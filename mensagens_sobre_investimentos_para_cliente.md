@@ -33,7 +33,7 @@ df = pd.read_csv('SDW2023.csv')
 user_ids = df['UserID'].tolist()
 print(user_ids)
 ```
-```
+```python
 import requests
 import json
 
@@ -46,10 +46,10 @@ print(json.dumps(users, indent=2))
 ```
 ## Transformação com a API do GPT
 Com a API será possível gerar mensagens personalizadas e de forma automática. (OBS: minha chave pode ter expirado dos 3 meses gratuitos fornecidos pela OpenAi, logo pode ocorrer erro na criação das mensagens)
-```
+```python
 !pip install openai
 ``` 
-```
+```python
 Collecting openai
   Downloading openai-0.28.0-py3-none-any.whl (76 kB)
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 76.5/76.5 kB 2.1 MB/s eta 0:00:00
@@ -70,11 +70,11 @@ Installing collected packages: openai
 Successfully installed openai-0.28.0
 ```
 Crie uma variável que contenha a API key do gpt
-```
+```python
 openai_api_key = 'chave_que_ainda_funcione' 
 ```
 
-```
+```python
 import openai
 
 openai.api_key = openai_api_key
@@ -107,7 +107,7 @@ for user in users:
 
 ## Load
 Para finalizar, atualize os dados dos clientes na API do Santander, que agora vão conter as mensagens geradas pela IA.
-```
+```python
 def update_user(user):
   response = requests.put(f"{sdw2023_api_url}/users/{user['id']}", json=user)
   return True if response.status_code == 200 else False
